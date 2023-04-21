@@ -22,7 +22,7 @@ public class LineOrderService {
     @Autowired
     private OrderDAO orderDAO;
 
-    public LineOrder insertLineOrder(LineOrder lineOrder, Integer idOrder){
+    public LineOrder insertLineOrder(LineOrder lineOrder){
         return lineorderDAO.save(lineOrder);
     }
 
