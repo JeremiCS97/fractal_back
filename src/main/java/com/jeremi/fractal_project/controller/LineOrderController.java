@@ -11,17 +11,17 @@ public class LineOrderController {
     @Autowired
     private LineOrderService lineorderService;
 
-    @PostMapping("/inserLineOrder")
+    @PostMapping("/insert")
     public LineOrder insertLineOrder(@RequestBody LineOrder lineOrder){
         return lineorderService.insertLineOrder(lineOrder);
     }
 
-    @PostMapping("/editLineOrder/{idLineOrder}")
+    @PostMapping("/edit/{idLineOrder}")
     public LineOrder editLineOrder(@PathVariable("idLineOrder") Integer idLineOrder, @RequestBody LineOrder lineOrder){
         return lineorderService.editLineOrder(idLineOrder,lineOrder);
     }
 
-    @PostMapping("/deleteLineOrder/{idLineOrder}")
+    @PostMapping("/delete/{idLineOrder}")
     public String deleteLineOrder(@PathVariable("idLineOrder") Integer idLineOrder){
         return lineorderService.deleteLineOrder(idLineOrder);
     }

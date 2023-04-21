@@ -18,17 +18,17 @@ public class ProductController {
         return productService.findAllProduct();
     }
 
-    @PostMapping("/insertProduct")
+    @PostMapping("/insert")
     public Product insertProduct(@RequestBody Product product){
         return productService.insertProduct(product);
     }
 
-    @PostMapping("/editProduct/{idProduct}")
+    @PostMapping("/edit/{idProduct}")
     public Product editProduct(@RequestBody Product product, @PathVariable("idProduct") Integer idProduct){
         return productService.editProduct(idProduct,product);
     }
 
-    @PostMapping("deleteProduct/{idProduct}")
+    @PostMapping("delete/{idProduct}")
     public String deleteProduct(@PathVariable("idProduct") Integer idProduct){
         return productService.deleteProduct(idProduct);
     }
