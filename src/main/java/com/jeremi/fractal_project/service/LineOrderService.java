@@ -37,6 +37,7 @@ public class LineOrderService {
         p.setIdProduct(lineOrder.getProduct().getIdProduct());
         l.setProduct(p);
         return lineorderDAO.save(l);
+
     }
 
     public String deleteLineOrder(Integer idLineOrder){
