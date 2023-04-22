@@ -42,14 +42,19 @@ public class LineOrderService {
 
     public String deleteLineOrder(Integer idLineOrder){
         LineOrder l = lineorderDAO.findById(idLineOrder).get();
-        Order o = orderDAO.getById(l.getOrder().getIdOrder());
-        List<LineOrder> list_Order = o.getLineOrders();
+        //Order o = orderDAO.getById(l.getOrder().getIdOrder());
+        /*List<LineOrder> list_Order = o.getLineOrders();
         list_Order.remove(l);
         o.setLineOrders(list_Order);
-        orderDAO.save(o);
+        */
+        //orderDAO.save(o);
         lineorderDAO.delete(l);
         return "Se eliminó la linea correctamente";
     }
 
+    public List<LineOrder> findByOrderId(Integer idOrder){
+        Order o = orderDAO.findById(idOrder).get();
+        return lineorderDAO.findAllByOrder(o);
+    }
 
 }

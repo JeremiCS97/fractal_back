@@ -5,6 +5,8 @@ import com.jeremi.fractal_project.service.LineOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/lineorder")
 public class LineOrderController {
@@ -26,5 +28,9 @@ public class LineOrderController {
         return lineorderService.deleteLineOrder(idLineOrder);
     }
 
+    @GetMapping("/findByOrderId/{idOrder}")
+    public List<LineOrder> findByOrderId(@PathVariable("idOrder") Integer idOrder){
+        return lineorderService.findByOrderId(idOrder);
+    }
 
 }

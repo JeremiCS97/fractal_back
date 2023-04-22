@@ -1,5 +1,6 @@
 package com.jeremi.fractal_project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.LazyCollection;
@@ -22,27 +23,28 @@ public class Order {
     @Column (name = "orderNumber")
     private Integer orderNumber;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
     @Column (name = "dateOrder")
     private Date dateOrder;
 
     @Column (name ="statusOrder")
     private String statusOrder;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @OneToMany (fetch = FetchType.EAGER)
     //@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "idLineOrder")
     private  List<LineOrder> LineOrders;
-
+    */
     public Order() {
     }
 
-    public Order(Integer idOrder, Integer orderNumber, Date dateOrder, String statusOrder, List<LineOrder> lineOrders) {
+    public Order(Integer idOrder, Integer orderNumber, Date dateOrder, String statusOrder/*, List<LineOrder> lineOrders*/) {
         this.idOrder = idOrder;
         this.orderNumber = orderNumber;
         this.dateOrder = dateOrder;
         this.statusOrder = statusOrder;
-        LineOrders = lineOrders;
+        //LineOrders = lineOrders;
     }
 
     public Integer getIdOrder() {
@@ -76,12 +78,12 @@ public class Order {
     public void setStatusOrder(String statusOrder) {
         this.statusOrder = statusOrder;
     }
-
+    /*
     public List<LineOrder> getLineOrders() {
         return LineOrders;
     }
 
     public void setLineOrders(List<LineOrder> lineOrders) {
         LineOrders = lineOrders;
-    }
+    }*/
 }

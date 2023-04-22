@@ -28,10 +28,10 @@ public class OrderController {
     public String deleteOrder(@PathVariable("idOrder") Integer idOrder){
         return orderService.deleteOrder(idOrder);
     }
-
+/*
     @GetMapping("/findLineOrder/{idOrder}")
     public List<LineOrder> findLineOrdersById(@PathVariable("idOrder") Integer idOrder){
         return orderService.findLineOrdersById(idOrder);
     }
-
+*/
 }
