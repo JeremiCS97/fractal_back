@@ -13,16 +13,18 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @CrossOrigin
     @PostMapping("/insert")
     public Order insertOrder(@RequestBody Order order){
         return orderService.insertOrder(order);
     }
 
+    @CrossOrigin
     @PostMapping("/edit/{idOrder}")
     public Order editOrder(@PathVariable("idOrder") Integer idOrder, @RequestBody Order order){
         return orderService.editOrder(idOrder,order);
     }
-
+    @CrossOrigin
     @PostMapping("/delete/{idOrder}")
     public String deleteOrder(@PathVariable("idOrder") Integer idOrder){
         return orderService.deleteOrder(idOrder);

@@ -13,21 +13,25 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @CrossOrigin
     @GetMapping("/findAll")
     public List<Product> findAllProduct(){
         return productService.findAllProduct();
     }
 
+    @CrossOrigin
     @PostMapping("/insert")
     public Product insertProduct(@RequestBody Product product){
         return productService.insertProduct(product);
     }
 
+    @CrossOrigin
     @PostMapping("/edit/{idProduct}")
     public Product editProduct(@RequestBody Product product, @PathVariable("idProduct") Integer idProduct){
         return productService.editProduct(idProduct,product);
     }
 
+    @CrossOrigin
     @PostMapping("delete/{idProduct}")
     public String deleteProduct(@PathVariable("idProduct") Integer idProduct){
         return productService.deleteProduct(idProduct);
