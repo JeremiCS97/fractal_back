@@ -25,14 +25,22 @@ public class Order {
     @Column (name ="statusOrder")
     private String statusOrder;
 
+    @Column (name = "numberProducts")
+    private Integer numberProducts;
+
+    @Column (name = "ammountPrice")
+    private Float ammountPrice;
+
     public Order() {
     }
 
-    public Order(Integer idOrder, Integer orderNumber, Date dateOrder, String statusOrder) {
+    public Order(Integer idOrder, Integer orderNumber, Date dateOrder, String statusOrder, Integer numberProducts, Float ammountPrice) {
         this.idOrder = idOrder;
         this.orderNumber = orderNumber;
         this.dateOrder = dateOrder;
         this.statusOrder = statusOrder;
+        this.numberProducts = numberProducts;
+        this.ammountPrice = ammountPrice;
     }
 
     public Integer getIdOrder() {
@@ -65,5 +73,21 @@ public class Order {
 
     public void setStatusOrder(String statusOrder) {
         this.statusOrder = statusOrder;
+    }
+
+    public Integer getNumberProducts() {
+        return numberProducts;
+    }
+
+    public void setNumberProducts(Integer numberProducts) {
+        this.numberProducts = numberProducts;
+    }
+
+    public Float getAmmountPrice() {
+        return ammountPrice;
+    }
+
+    public void setAmmountPrice(Float ammountPrice) {
+        this.ammountPrice = ammountPrice;
     }
 }

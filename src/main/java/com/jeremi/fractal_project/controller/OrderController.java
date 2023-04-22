@@ -44,4 +44,16 @@ public class OrderController {
         return orderService.findAllOrder();
     }
 
+    @CrossOrigin
+    @GetMapping("/findNumberProductsOrder/{idOrder}")
+    public Integer findNumberProductsOrder(@PathVariable("idOrder") Integer idOrder){
+        return orderService.findNumberProductsOrder(idOrder);
+    }
+
+    @CrossOrigin
+    @GetMapping("/findAmmountPriceOrder/{idOrder}")
+    public Float findAmmountPriceOrder(@PathVariable("idOrder") Integer idOrder){
+        return orderService.findAmmountPriceOrder(idOrder);
+    }
+
 }

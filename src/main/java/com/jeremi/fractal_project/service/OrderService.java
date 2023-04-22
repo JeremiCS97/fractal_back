@@ -29,6 +29,8 @@ public class OrderService {
         o.setStatusOrder(order.getStatusOrder());
         o.setOrderNumber(order.getOrderNumber());
         o.setDateOrder(order.getDateOrder());
+        o.setAmmountPrice(order.getAmmountPrice());
+        o.setNumberProducts(order.getNumberProducts());
         return orderDAO.save(o);
     }
 
@@ -49,6 +51,26 @@ public class OrderService {
 
     public List<Order> findAllOrder(){
         return orderDAO.findAll();
+    }
+
+    public Integer findNumberProductsOrder(Integer idOrder){
+        Order o = orderDAO.findById(idOrder).get();
+        List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
+        Integer cant = 0;
+        for (int i = 0; i<l.size();i++){
+            cant++;
+        }
+        return cant;
+    }
+
+    public Float findAmmountPriceOrder(Integer idOrder){
+        Order o = orderDAO.findById(idOrder).get();
+        List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
+        Float cant = 0.0F;
+        for (int i = 0; i<l.size();i++){
+            cant = cant + l.get(i).getPriceLineOrder();
+        }
+        return cant;
     }
 
 }
