@@ -18,6 +18,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOrder;
 
+
     @Column (name = "orderNumber")
     private Integer orderNumber;
 
