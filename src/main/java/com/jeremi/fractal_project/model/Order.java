@@ -32,6 +32,8 @@ public class Order {
     private Float ammountPrice;
 
     public Order() {
+        this.numberProducts = 0;
+        this.ammountPrice = 0.00F;
     }
 
     public Order(Integer idOrder, Integer orderNumber, Date dateOrder, String statusOrder, Integer numberProducts, Float ammountPrice) {
@@ -39,8 +41,8 @@ public class Order {
         this.orderNumber = orderNumber;
         this.dateOrder = dateOrder;
         this.statusOrder = statusOrder;
-        this.numberProducts = numberProducts;
-        this.ammountPrice = ammountPrice;
+        this.numberProducts = 0;
+        this.ammountPrice = 0.00F;
     }
 
     public Integer getIdOrder() {

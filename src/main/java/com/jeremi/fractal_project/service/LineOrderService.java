@@ -23,6 +23,19 @@ public class LineOrderService {
     private OrderDAO orderDAO;
 
     public LineOrder insertLineOrder(LineOrder lineOrder){
+        Integer orderId = lineOrder.getOrder().getIdOrder();
+        Order o = orderDAO.findById(orderId).get();
+        Integer numberProducts = o.getNumberProducts();
+        Float ammountPrice = o.getAmmountPrice();
+        if (numberProducts == null) {
+            numberProducts = 0;
+        }
+        if (ammountPrice == null) {
+            ammountPrice = 0.0F;
+        }
+        o.setNumberProducts(lineOrder.getQtyLineOrder() + numberProducts);
+        o.setAmmountPrice((lineOrder.getPriceLineOrder() * lineOrder.getQtyLineOrder())+ammountPrice);
+        orderDAO.save(o);
         return lineorderDAO.save(lineOrder);
     }
 

@@ -53,7 +53,7 @@ public class OrderService {
         return orderDAO.findAll();
     }
 
-    public Integer findNumberProductsOrder(Integer idOrder){
+    /*public Integer findNumberProductsOrder(Integer idOrder){
         Order o = orderDAO.findById(idOrder).get();
         List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
         Integer cant = 0;
@@ -72,5 +72,5 @@ public class OrderService {
         }
         return cant;
     }
-
+    */
 }
