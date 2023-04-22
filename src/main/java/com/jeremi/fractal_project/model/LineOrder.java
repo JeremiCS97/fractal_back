@@ -1,7 +1,6 @@
 package com.jeremi.fractal_project.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
 
 @Entity
 public class LineOrder {

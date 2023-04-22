@@ -42,12 +42,6 @@ public class LineOrderService {
 
     public String deleteLineOrder(Integer idLineOrder){
         LineOrder l = lineorderDAO.findById(idLineOrder).get();
-        //Order o = orderDAO.getById(l.getOrder().getIdOrder());
-        /*List<LineOrder> list_Order = o.getLineOrders();
-        list_Order.remove(l);
-        o.setLineOrders(list_Order);
-        */
-        //orderDAO.save(o);
         lineorderDAO.delete(l);
         return "Se eliminó la linea correctamente";
     }
