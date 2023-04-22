@@ -15,7 +15,6 @@ public class ProductService {
     public List<Product> findAllProduct(){
         return productDAO.findAll();
     }
-
     public Product insertProduct(Product product){
         return productDAO.save(product);
     }
@@ -32,5 +31,9 @@ public class ProductService {
         Product p = productDAO.findById(idProduct).get();
         productDAO.delete(p);
         return "El producto se eliminó correctamente";
+    }
+
+    public Product findProductById(Integer idProduct){
+        return productDAO.findById(idProduct).get();
     }
 }

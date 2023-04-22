@@ -36,4 +36,10 @@ public class ProductController {
     public String deleteProduct(@PathVariable("idProduct") Integer idProduct){
         return productService.deleteProduct(idProduct);
     }
+
+    @CrossOrigin
+    @GetMapping("findById/{idProduct}")
+    public Product findProductById(@PathVariable("idProduct") Integer idProduct){
+        return productService.findProductById(idProduct);
+    }
 }
