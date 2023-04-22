@@ -34,13 +34,27 @@ public class LineOrderService {
             ammountPrice = 0.0F;
         }
         o.setNumberProducts(lineOrder.getQtyLineOrder() + numberProducts);
-        o.setAmmountPrice((lineOrder.getPriceLineOrder() * lineOrder.getQtyLineOrder())+ammountPrice);
+        o.setAmmountPrice(lineOrder.getPriceLineOrder() +ammountPrice);
         orderDAO.save(o);
         return lineorderDAO.save(lineOrder);
     }
 
     public LineOrder editLineOrder(Integer idLineOrder, LineOrder lineOrder){
         LineOrder l = lineorderDAO.findById(idLineOrder).get();
+
+        Integer orderId = l.getOrder().getIdOrder();
+        Order o = orderDAO.findById(orderId).get();
+        Integer numberProducts = o.getNumberProducts();
+        Float ammountPrice = o.getAmmountPrice();
+        if (numberProducts == null) {
+            numberProducts = 0;
+        }
+        if (ammountPrice == null) {
+            ammountPrice = 0.0F;
+        }
+        o.setNumberProducts(numberProducts - l.getQtyLineOrder() + lineOrder.getQtyLineOrder());
+        o.setAmmountPrice(ammountPrice - l.getPriceLineOrder()  + lineOrder.getPriceLineOrder() );
+        orderDAO.save(o);
         l.setPriceLineOrder(lineOrder.getPriceLineOrder());
         l.setQtyLineOrder(lineOrder.getQtyLineOrder());
         Product p = new Product();
@@ -55,6 +69,19 @@ public class LineOrderService {
 
     public String deleteLineOrder(Integer idLineOrder){
         LineOrder l = lineorderDAO.findById(idLineOrder).get();
+        Integer orderId = l.getOrder().getIdOrder();
+        Order o = orderDAO.findById(orderId).get();
+        Integer numberProducts = o.getNumberProducts();
+        Float ammountPrice = o.getAmmountPrice();
+        if (numberProducts == null) {
+            numberProducts = 0;
+        }
+        if (ammountPrice == null) {
+            ammountPrice = 0.0F;
+        }
+        o.setNumberProducts(numberProducts - l.getQtyLineOrder());
+        o.setAmmountPrice(ammountPrice - l.getPriceLineOrder());
+        orderDAO.save(o);
         lineorderDAO.delete(l);
         return "Se eliminó la linea correctamente";
     }
