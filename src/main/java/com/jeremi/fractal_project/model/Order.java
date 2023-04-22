@@ -1,5 +1,6 @@
 package com.jeremi.fractal_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "orderv")
 public class Order {
 
     @Id
@@ -25,8 +27,9 @@ public class Order {
     @Column (name ="statusOrder")
     private String statusOrder;
 
+    @JsonIgnore
     @OneToMany (fetch = FetchType.EAGER)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "idLineOrder")
     private  List<LineOrder> LineOrders;
 
