@@ -43,4 +43,12 @@ public class OrderService {
         return "La orden ha sido borrada correctamente";
     }
 
+    public Order findById(Integer idOrder){
+        return orderDAO.findById(idOrder).get();
+    }
+
+    public List<Order> findAllOrder(){
+        return orderDAO.findAll();
+    }
+
 }

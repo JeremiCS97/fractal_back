@@ -6,6 +6,8 @@ import com.jeremi.fractal_project.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/order")
@@ -28,6 +30,18 @@ public class OrderController {
     @PostMapping("/delete/{idOrder}")
     public String deleteOrder(@PathVariable("idOrder") Integer idOrder){
         return orderService.deleteOrder(idOrder);
+    }
+
+    @CrossOrigin
+    @GetMapping("/findById/{idOrder}")
+    public Order findById(@PathVariable("idOrder") Integer idOrder){
+        return orderService.findById(idOrder);
+    }
+
+    @CrossOrigin
+    @GetMapping("/findAllOrder")
+    public List<Order> findAllOrder(){
+        return orderService.findAllOrder();
     }
 
 }
