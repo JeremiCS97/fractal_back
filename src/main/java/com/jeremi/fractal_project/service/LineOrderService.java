@@ -24,7 +24,11 @@ public class LineOrderService {
 
     public LineOrder insertLineOrder(LineOrder lineOrder){
         Integer orderId = lineOrder.getOrder().getIdOrder();
+        Integer productId = lineOrder.getProduct().getIdProduct();
         Order o = orderDAO.findById(orderId).get();
+        Product p = productDAO.findById(productId).get();
+        lineOrder.setPriceLineOrder((lineOrder.getQtyLineOrder()*p.getUnitPrice()));
+        lineOrder.setProduct(p);
         Integer numberProducts = o.getNumberProducts();
         Float ammountPrice = o.getAmmountPrice();
         if (numberProducts == null) {
@@ -34,8 +38,9 @@ public class LineOrderService {
             ammountPrice = 0.0F;
         }
         o.setNumberProducts(lineOrder.getQtyLineOrder() + numberProducts);
-        o.setAmmountPrice(lineOrder.getPriceLineOrder() +ammountPrice);
+        o.setAmmountPrice((lineOrder.getQtyLineOrder()*p.getUnitPrice()) +ammountPrice);
         orderDAO.save(o);
+        lineOrder.setOrder(o);
         return lineorderDAO.save(lineOrder);
     }
 

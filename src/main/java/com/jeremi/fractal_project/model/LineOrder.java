@@ -1,5 +1,6 @@
 package com.jeremi.fractal_project.model;
 
+import com.jeremi.fractal_project.dao.ProductDAO;
 import jakarta.persistence.*;
 
 @Entity

@@ -32,6 +32,8 @@ public class Order {
     private Float ammountPrice;
 
     public Order() {
+        this.dateOrder = new Date();
+        this.statusOrder = "Pending";
         this.numberProducts = 0;
         this.ammountPrice = 0.00F;
     }

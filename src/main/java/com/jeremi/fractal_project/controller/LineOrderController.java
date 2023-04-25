@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/lineorder")
 public class LineOrderController {
@@ -25,7 +26,7 @@ public class LineOrderController {
         return lineorderService.editLineOrder(idLineOrder,lineOrder);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/delete/{idLineOrder}")
     public String deleteLineOrder(@PathVariable("idLineOrder") Integer idLineOrder){
         return lineorderService.deleteLineOrder(idLineOrder);

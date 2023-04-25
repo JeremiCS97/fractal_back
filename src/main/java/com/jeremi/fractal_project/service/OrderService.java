@@ -21,7 +21,9 @@ public class OrderService {
     private LineOrderService lineOrderService;
 
     public Order insertOrder(Order order){
-        return orderDAO.save(order);
+        Order o = orderDAO.save(order);
+        o.setOrderNumber(o.getIdOrder());
+        return orderDAO.save(o);
     }
 
     public Order editOrder(Integer idOrder,Order order){
