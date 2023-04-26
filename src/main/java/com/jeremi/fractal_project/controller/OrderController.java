@@ -48,4 +48,8 @@ public class OrderController {
     @PostMapping("/updateStatusOrder")
     public Order updateStatusOrder(@RequestBody Order order ){ return orderService.updateStatusOrder(order); }
 
+    @CrossOrigin
+    @PostMapping("/updateNumberOrder")
+    public Order updateNumberOrder(@RequestBody Order order ){ return orderService.updateNumberOrder(order); }
+
 }

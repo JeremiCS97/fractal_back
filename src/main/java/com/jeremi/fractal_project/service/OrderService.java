@@ -28,11 +28,16 @@ public class OrderService {
 
     public Order editOrder(Integer idOrder,Order order){
         Order o = orderDAO.findById(idOrder).get();
-        o.setStatusOrder(order.getStatusOrder());
-        o.setOrderNumber(order.getOrderNumber());
-        o.setDateOrder(order.getDateOrder());
-        o.setAmmountPrice(order.getAmmountPrice());
-        o.setNumberProducts(order.getNumberProducts());
+        if (order.getStatusOrder()!="Pending"){
+        o.setStatusOrder(order.getStatusOrder());}
+        if (order.getOrderNumber() != o.getOrderNumber()){
+        o.setOrderNumber(order.getOrderNumber());}
+        if (order.getDateOrder()== o.getDateOrder()){
+        o.setDateOrder(order.getDateOrder());}
+        if (order.getAmmountPrice() == o.getAmmountPrice()){
+        o.setAmmountPrice(order.getAmmountPrice());}
+        if (order.getNumberProducts() == o.getNumberProducts()){
+        o.setNumberProducts(order.getNumberProducts());}
         return orderDAO.save(o);
     }
 
@@ -58,6 +63,12 @@ public class OrderService {
     public Order updateStatusOrder(Order order){
         Order o = orderDAO.findById(order.getIdOrder()).get();
         o.setStatusOrder(order.getStatusOrder());
+        return orderDAO.save(o);
+    }
+
+    public Order updateNumberOrder(Order order){
+        Order o = orderDAO.findById(order.getIdOrder()).get();
+        o.setOrderNumber(order.getOrderNumber());
         return orderDAO.save(o);
     }
 }
