@@ -55,24 +55,9 @@ public class OrderService {
         return orderDAO.findAll();
     }
 
-    /*public Integer findNumberProductsOrder(Integer idOrder){
-        Order o = orderDAO.findById(idOrder).get();
-        List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
-        Integer cant = 0;
-        for (int i = 0; i<l.size();i++){
-            cant++;
-        }
-        return cant;
+    public Order updateStatusOrder(Order order){
+        Order o = orderDAO.findById(order.getIdOrder()).get();
+        o.setStatusOrder(order.getStatusOrder());
+        return orderDAO.save(o);
     }
-
-    public Float findAmmountPriceOrder(Integer idOrder){
-        Order o = orderDAO.findById(idOrder).get();
-        List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
-        Float cant = 0.0F;
-        for (int i = 0; i<l.size();i++){
-            cant = cant + l.get(i).getPriceLineOrder();
-        }
-        return cant;
-    }
-    */
 }
