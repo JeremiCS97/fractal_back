@@ -1,8 +1,10 @@
 package com.jeremi.fractal_project.service;
 
 import com.jeremi.fractal_project.dao.LineOrderDAO;
+import com.jeremi.fractal_project.dao.ProductDAO;
 import com.jeremi.fractal_project.model.LineOrder;
 import com.jeremi.fractal_project.model.Order;
+import com.jeremi.fractal_project.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jeremi.fractal_project.dao.OrderDAO;
@@ -16,6 +18,9 @@ public class OrderService {
 
     @Autowired
     private LineOrderDAO lineorderDAO;
+
+    @Autowired
+    private ProductDAO productDAO;
 
     @Autowired
     private LineOrderService lineOrderService;
@@ -46,6 +51,9 @@ public class OrderService {
         List<LineOrder> l = lineOrderService.findByOrderId(idOrder);
         for (int i = 0; i<l.size();i++){
             LineOrder line = l.get(i);
+            Product p = productDAO.findById(line.getProduct().getIdProduct()).get();
+            p.setQtyAvailable(p.getQtyAvailable()+line.getQtyLineOrder());
+            productDAO.save(p);
             lineorderDAO.delete(line);
         }
         orderDAO.delete(o);

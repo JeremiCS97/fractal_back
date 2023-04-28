@@ -42,4 +42,8 @@ public class ProductController {
     public Product findProductById(@PathVariable("idProduct") Integer idProduct){
         return productService.findProductById(idProduct);
     }
+
+    @CrossOrigin
+    @GetMapping("findAllProductAvailable")
+    public List<Product> findAllProductAvailable() { return productService.findAllProductAvailable(); }
 }

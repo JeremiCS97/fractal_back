@@ -1,10 +1,12 @@
 package com.jeremi.fractal_project.service;
 
+import com.jeremi.fractal_project.model.LineOrder;
 import com.jeremi.fractal_project.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.jeremi.fractal_project.dao.ProductDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,5 +37,17 @@ public class ProductService {
 
     public Product findProductById(Integer idProduct){
         return productDAO.findById(idProduct).get();
+    }
+    
+    public List<Product> findAllProductAvailable(){
+        List<Product> l = productDAO.findAll();
+        List<Product> newL = new ArrayList<>();
+        for (int i = 0; i<l.size();i++){
+            Product p = l.get(i);
+            if(p.getQtyAvailable()>0){
+                newL.add(p);
+            }
+        }
+        return newL;
     }
 }
